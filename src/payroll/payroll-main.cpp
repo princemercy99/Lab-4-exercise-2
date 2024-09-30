@@ -17,6 +17,21 @@ using std::endl;
 #include "fixed.h"
 #include "hourly.h"
 #include "CommissionWorker.h"
+#include <vector> //used for the vector std
+using std::vector;
+
+//standalone function written outside the Employee hierarchy
+
+double calculate_total_wages(const vector<shared_ptr<Employee>>& employees){
+	double total_wages = 0.0;
+
+	//iterate over the vector of employees
+	for(const auto& employee: employees){
+		total_wages += employee->earnings(); //add each employee's earnings to the total
+	}
+
+	return total_wages;
+}
 
 int main()
 {
@@ -60,6 +75,17 @@ int main()
 
 	employee3_ptr->print();
 	cout << " earned R " << employee3_ptr->earnings() << endl;
+
+	cout << endl;
+
+	//store the pointers in a vector of shared pointers of Employee
+
+	vector<shared_ptr<Employee>> employees = {
+		employee1_ptr, employee2_ptr, employee3_ptr
+	};
+
+	double total_wages = calculate_total_wages(employees);
+	cout << "Total wages for the workforce: R " << total_wages << endl;
 
 	return 0;
 }
