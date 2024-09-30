@@ -33,6 +33,9 @@ int main()
 
 	cout << endl;
 	cout << "Why is the output below not identical to the output above ?" << endl;
+	// the outputs were not identical because the base class' print function was not defined as a virtual function hence it could not be overridden
+	// which means that the output of the Employee class is used instead of the derived classes. Changes have been made to the base class
+	// and the derived clases to ensure the correct output is generated.
 	cout << endl;
 
 	shared_ptr<Employee> employee1_ptr = make_shared<FixedRateWorker>("Ted", "Ramgasamy", 905.00);
