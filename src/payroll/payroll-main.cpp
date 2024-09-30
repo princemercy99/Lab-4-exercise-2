@@ -16,6 +16,7 @@ using std::endl;
 #include "employee.h"
 #include "fixed.h"
 #include "hourly.h"
+#include "CommissionWorker.h"
 
 int main()
 {
@@ -24,12 +25,19 @@ int main()
 
 	shared_ptr<FixedRateWorker> fixed_rate_ptr = make_shared<FixedRateWorker>("Ted", "Ramgasamy", 905.00);
 	shared_ptr<HourlyWorker> hourly_ptr = make_shared<HourlyWorker>("Louisa", "Mahlungu", 12.00, 52);
+	//Create a CommissionWorker object
+	shared_ptr<CommissionWorker> commission_ptr =  make_shared<CommissionWorker>("Bruce", "Wayne", 500, 20, 16);
 
 	fixed_rate_ptr->print();																		// static binding
 	cout << " earned R " << fixed_rate_ptr->earnings() << endl; // dynamic binding
 
 	hourly_ptr->print();																		// static binding
 	cout << " earned R " << hourly_ptr->earnings() << endl; // dynamic binding
+
+	//Test the print and earnings for Commission Worker
+	commission_ptr->print();
+	cout << "earned R " << commission_ptr->earnings() << endl;
+		
 
 	cout << endl;
 	cout << "Why is the output below not identical to the output above ?" << endl;
@@ -41,12 +49,17 @@ int main()
 	shared_ptr<Employee> employee1_ptr = make_shared<FixedRateWorker>("Ted", "Ramgasamy", 905.00);
 	shared_ptr<Employee> employee2_ptr = make_shared<HourlyWorker>("Louisa", "Mahlungu", 12.00, 52);
 
+	//Another test for Commission Worker using the Employee class
+	shared_ptr<Employee> employee3_ptr = make_shared<CommissionWorker>("Bruce", "Wayne", 500, 20, 16);
+
 	employee1_ptr->print();																		 // static binding
 	cout << " earned R " << employee1_ptr->earnings() << endl; // dynamic binding
 
 	employee2_ptr->print();																		 // static binding
 	cout << " earned R " << employee2_ptr->earnings() << endl; // dynamic binding
 
-	cout << endl;
+	employee3_ptr->print();
+	cout << " earned R " << employee3_ptr->earnings() << endl;
+
 	return 0;
 }
